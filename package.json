@@ -1,7 +1,7 @@
 {
   "name": "groupchat",
   "version": "1.0.0",
-  "description": "simple group chat",
+  "description": "simple groupchat with nodejs + socket.io + redis",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

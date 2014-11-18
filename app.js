@@ -4,7 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
-var redis = require('redis').createClient(6379, '113.161.96.234', {});
+var redis = require('redis').createClient(6379, '127.0.0.1', {});
 var sha1 = require('sha1');
 
 redis.on("error", function (err) {

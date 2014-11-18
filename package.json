@@ -1,0 +1,28 @@
+{
+  "name": "groupchat",
+  "version": "1.0.0",
+  "description": "simple group chat",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phatpham9/groupchat.git"
+  },
+  "keywords": [
+    "groupchat"
+  ],
+  "author": "http://github.com/phatpham9",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phatpham9/groupchat/issues"
+  },
+  "homepage": "https://github.com/phatpham9/groupchat",
+  "dependencies": {
+    "express": "^4.10.2",
+    "redis": "^0.12.1",
+    "sha1": "^1.1.0",
+    "socket.io": "^1.2.0"
+  }
+}

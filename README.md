@@ -11,7 +11,7 @@ Installation:
 
 3. nodejs command: node app.js
 
-4. open web browser and check localhost:3000
+4. open web browser and check http://127.0.0.1:3000
 
 References:
 

@@ -1,4 +1,4 @@
 groupchat
 =========
 
-simple group chat
+Simple groupchat with NodeJS + Socket.IO + Redis

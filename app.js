@@ -20,10 +20,10 @@ var room = 'test';
 // Routing-------------------------------------------------------------
 app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
+  room = sha1(new Date());
 	res.redirect('/' + sha1(new Date()));
 })
 app.get('/:room', function (req, res) {
-	room = req.params.room;
 	res.sendFile(__dirname + '/public/home.html');
 })
 

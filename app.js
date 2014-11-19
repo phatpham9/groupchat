@@ -3,8 +3,8 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var port = 80;
-var redis = require('redis').createClient(6379, '113.161.96.234', {});
+var port = process.env.PORT;
+var redis = require('redis').createClient(process.env.REDIS_PORT, process.env.REDIS_URL, {});
 var sha1 = require('sha1');
 
 redis.on("error", function (err) {

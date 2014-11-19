@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Realtime Group Chat</title>
+  <title>Simple Group Chat | NodeJS + Socket.IO + Redis</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <ul class="pages">
     <li class="chat page">
-      <div class="chatArea">
-          <h3 style="color: #fff; background-color: #000; text-align: center; margin: 0; padding: 7px;">Send your friends the link to group chat. Folk me on <a href="http://github.com/phatpham9/groupchat" style="color:red;">Github</a></h3>
-          <ul class="messages"></ul>
-      </div>
-      <input class="inputMessage" placeholder="Type here..."/>
+		<h3 style="color: #fff; background-color: #000; text-align: center; margin: 0; padding: 7px; position: absolute; width: 100%;">Send this link to your friends to chat. Folk me on <a href="http://github.com/phatpham9/groupchat" style="color:red;">Github</a>.</h3>
+		<div class="chatArea">
+			<ul class="messages"></ul>
+		</div>
+		<input class="inputMessage" placeholder="Type here..."/>
     </li>
     <li class="login page">
       <div class="form">
@@ -23,7 +23,7 @@
   </ul>
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="socket.io-1.2.0.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

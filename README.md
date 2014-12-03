@@ -2,7 +2,7 @@
 <p>Version 1.0</p>
 
 <h4>Demo:</h4>
-<p>http://groupchatt.herokuapp.com</p>
+<p>http://groupchat.phatpham.com</p>
 
 <h4>Installation:</h4>
 <ol>

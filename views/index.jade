@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	ul(class='pages')
+		li(class='chat page')
+			h3(style='color: #fff; background-color: #000; text-align: center; margin: 0; padding: 7px; position: absolute; width: 100%;') Send this link to your friends to chat. Folk me on 
+				a(href='http://github.com/phatpham9/groupchat', style='color:red') Github
+			div(class='chatArea')
+				ul(class='messages')
+			input(class='inputMessage', placeholder='Type here...')
+		li(class='login page')
+			div(class='form')
+				h3(class='title') What's your nickname?
+				input(class='usernameInput', type='text', maxlength='14')
+	script.
+		var room_id = "#{room_id}"

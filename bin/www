@@ -1,0 +1,89 @@
+#!/usr/bin/env node
+var debug = require('debug')('test');
+var app = require('../app');
+
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+var port = process.env.PORT || 3000;
+var redis = require('redis').createClient(process.env.REDIS_PORT || 6379, process.env.REDIS_URL || '113.161.96.234', {});
+
+server.listen(port, function() {
+	console.log('Express server listening on port ' + port);
+});
+
+redis.on("error", function (err) {
+    console.log("Redis error " + err);
+});
+
+io.on('connection', function (socket) {
+	var addedUser = false;
+
+	// when the client emits 'new message', this listens and executes
+	socket.on('new message', function (data) {
+		var newMessage = {
+			username: socket.username,
+			message: data,
+			dateCreated: new Date()
+		};
+
+		redis.rpush('room:' + socket.room_id + ':chat_logs', JSON.stringify(newMessage));
+
+		// we tell the client to execute 'new message'
+		socket.broadcast.to(socket.room_id).emit('new message', newMessage);
+	});
+
+  // when the client emits 'add user', this listens and executes
+  socket.on('add user', function (data) {
+    socket.room_id = data.room_id;
+    socket.join(socket.room_id);
+
+    // we store the username in the socket session for this client
+    socket.username = data.username;
+
+    // add the client's username db
+    redis.hset('room:' + socket.room_id + ':participants', socket.username, JSON.stringify({username: socket.username}));
+    redis.incr('room:' + socket.room_id + ':num_participants');
+    addedUser = true;
+
+    redis.lrange('room:' + socket.room_id + ':chat_logs', 0, -1, function(err, data) {
+        socket.emit('chat log', {
+            log: data
+        });
+    });
+
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.to(socket.room_id).emit('user joined', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'typing', we broadcast it to others
+  socket.on('typing', function () {
+    socket.broadcast.to(socket.room_id).emit('typing', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'stop typing', we broadcast it to others
+  socket.on('stop typing', function () {
+    socket.broadcast.to(socket.room_id).emit('stop typing', {
+      username: socket.username
+    });
+  });
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', function () {
+  	socket.leave(socket.room_id);
+    // remove the username from global usernames list
+    if (addedUser) {
+      redis.hdel('room:' + socket.room_id + ':participants', socket.username);
+      redis.decr('room:' + socket.room_id + ':num_participants');
+
+      // echo globally that this client has left
+      socket.broadcast.to(socket.room_id).emit('user left', {
+        username: socket.username
+      });
+    }
+  });
+});

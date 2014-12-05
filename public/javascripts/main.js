@@ -37,7 +37,7 @@ $(function() {
       $currentInput = $inputMessage.focus();
 
       // Tell the server your username
-      socket.emit('add user', username);
+      socket.emit('add user', {room_id: room_id, username: username});
     }
   }
 

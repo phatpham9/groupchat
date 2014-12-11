@@ -1,4 +1,4 @@
-<h3>Simple GroupChat with Express.js + Socket.io + Redis</h3>
+<h3>Simple GroupChat with Express.js + Jade + Socket.io + Redis</h3>
 <p>Version 1.1</p>
 <p>A folk of https://github.com/guille/chat-example</p>
 

@@ -8,9 +8,6 @@
   <li>A specific room for group chat</li>
 </ol>
 
-<h4>Demo:</h4>
-<p>http://groupchat.phatpham.com</p>
-
 <h4>Quickstart:</h4>
 <ol>
   <li>install redis</li>
